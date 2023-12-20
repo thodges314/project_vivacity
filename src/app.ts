@@ -2,9 +2,9 @@ import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import express, { NextFunction, Request, Response } from 'express';
 
-import connections from '../routes/connections';
-import jobs from '../routes/jobs';
-import skills from '../routes/skills';
+import connections from './routes/connections';
+import jobs from './routes/jobs';
+import skills from './routes/skills';
 
 dotenv.config({ path: './.env' });
 

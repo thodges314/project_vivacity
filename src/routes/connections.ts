@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
-import pool from '../db';
+import pool from '../../db';
 
 const router = Router();
 

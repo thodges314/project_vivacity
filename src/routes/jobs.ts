@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
 // import pgp from 'pg-promise';
-import pool from '../db';
+import pool from '../../db';
 
 const router = Router();
 
