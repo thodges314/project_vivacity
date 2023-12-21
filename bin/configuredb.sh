@@ -15,3 +15,4 @@ psql -U $POSTGRES_USER $POSTGRES_DB < ./bin/sql/jobs.sql
 
 echo "$POSTGRES_DB configured"
 
+exit 0
