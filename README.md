@@ -27,9 +27,9 @@ For all of the other endpoints, you can navigate to `GET` requests in your brows
 
 There is no authentication being used except for the password protected access to PostgreSQL. Had I been creating a two-part system with a developed front-end, I would have used a token system.
 
-All of the endpoints, except for `/awesome/applicant` return JSON. It looks nice in the video because I have an extension to load them.
+All of the endpoints, except for `/awesome/applicant` return JSON. They look nice in the video because I have an browser extension to display JSON.
 
-Testing is performed with `npm run testAll`. Because each test mutates the database entries, I wrote a bash script to run each `.test.ts` file separately, with the database being reset beforehand and after each file. If this were in production, we would have a separate prod database from the testing database, but for this project, I'm only using the one database.
+Testing is performed with `npm run testAll`. Because each test mutates the database entries, I wrote a bash script to run each `.test.ts` file separately, with the database being reset beforehand and after each file. I considered calling the config bash script using the `beforeAll()` hook, but I already had this running with bash so I just left it. If this were in production, we would have a separate prod database from the testing database, but for this project, I'm only using the one database.
 
 ## Challenges
 
