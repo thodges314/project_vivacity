@@ -10,9 +10,7 @@ import skills from './routes/skills';
 dotenv.config({ path: './.env' });
 
 const app = express();
-console.log('/public');
 app.use(express.static('./public'));
-// app.use(express.static('public'));
 const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use('/awesome/jobs', jobs);
