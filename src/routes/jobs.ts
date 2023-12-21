@@ -48,12 +48,11 @@ router.post(
     const { skill, description } = request.body;
     const { id } = request.params;
 
-    pool
-      .query('INSERT INTO skills (skill_name, description) VALUES ($1, $2)', [
-        skill,
-        description,
-      ])
-      .then(() => {
+    pool.query(
+      'INSERT INTO skills (skill_name, description) VALUES ($1, $2)',
+      [skill, description],
+      (err) => {
+        if (err) return next(err);
         pool.query(
           'INSERT INTO connections(skill, job) VALUES (($1), (SELECT j.company_name FROM jobs j WHERE j.id=($2)))',
           [skill, id],
@@ -62,7 +61,8 @@ router.post(
             response.redirect(`/awesome/connections/jobs/${id}`);
           }
         );
-      });
+      }
+    );
   }
 );
 

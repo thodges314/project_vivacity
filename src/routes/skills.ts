@@ -34,9 +34,9 @@ router.post('/', (request: Request, response: Response, next: NextFunction) => {
   pool.query(
     'INSERT INTO skills (skill_name, description) VALUES ($1, $2) RETURNING *',
     [skill_name, description],
-    (err) => {
+    (err, res) => {
       if (err) return next(err);
-      response.redirect('/awesome/skills');
+      response.redirect(`/awesome/skills/${res.rows[0].id}`);
     }
   );
 });
@@ -71,17 +71,17 @@ router.delete(
   '/:id',
   (request: Request, response: Response, next: NextFunction) => {
     const { id } = request.params;
-    pool
-      .query(
-        'DELETE FROM connections c WHERE c.skill = (SELECT s.skill_name FROM skills s WHERE s.id = ($1))',
-        [id]
-      )
-      .then(() => {
+    pool.query(
+      'DELETE FROM connections c WHERE c.skill = (SELECT s.skill_name FROM skills s WHERE s.id = ($1))',
+      [id],
+      (err) => {
+        if (err) return next(err);
         pool.query('DELETE FROM skills WHERE id = ($1)', [id], (err) => {
           if (err) return next(err);
           response.redirect('/awesome/skills');
         });
-      });
+      }
+    );
   }
 );
 
