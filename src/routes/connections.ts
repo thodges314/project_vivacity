@@ -92,7 +92,7 @@ router.post('/', (request: Request, response: Response, next: NextFunction) => {
     [job, skill],
     (err) => {
       if (err) return next(err);
-      response.redirect('/awesome/skills');
+      response.redirect('/awesome/connections');
     }
   );
 });
