@@ -33,4 +33,4 @@ Testing is performed with `npm run testAll`. Because each test mutates the datab
 
 ## Challenges
 
-Although I've worked on projects that use both SQL and GraphQL databases, I've never built one from the ground up, so I had to learn a bit about that first. Also, most node tests I've written have been on front-end react components, so I had to learn how to test Express endpoints. Also, entering the data took quite some time.
+Although I've worked on projects that use both SQL and GraphQL databases, I've never built one from the ground up, so I had to learn a bit about that first. Also, most jest tests I've written have been on front-end react components, so I had to learn how to test Express endpoints. Also, entering the data took quite some time.
