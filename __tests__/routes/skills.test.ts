@@ -57,16 +57,15 @@ describe('awesome/skills', () => {
       .expect('Content-Type', 'text/plain; charset=utf-8')
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.get('location')).toBe('/awesome/skills');
+        expect(res.get('location')).toBe('/awesome/skills/35');
         request(app)
-          .get('/awesome/skills')
+          .get('/awesome/skills/35')
           .expect(200)
           .expect('Content-Type', /json/)
           .end((err, res) => {
             if (err) return done(err);
-            expect(
-              res.body.map((skill: { skill_name: String }) => skill.skill_name)
-            ).toContain(new_skill.skill_name);
+            expect(res.body).toHaveLength(1);
+            expect(res.body[0].skill_name).toBe(new_skill.skill_name);
             done();
           });
       });
