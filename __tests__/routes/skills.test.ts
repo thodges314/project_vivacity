@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import request from 'supertest';
 
 import skills from '../../src/routes/skills';
@@ -11,12 +11,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use('/awesome/skills', skills);
-
-app.use(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  (error: Error, _request: Request, response: Response, _next: NextFunction) =>
-    response.status(500).json({ error: error.message })
-);
 
 describe('awesome/skills', () => {
   it('GET /awesome/skills', (done) => {
