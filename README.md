@@ -8,7 +8,7 @@ Assuming you have successfully downloaded the github project, navigate to the pr
 
 Also, use `chmod` to set `+x` permission on `configuredb.sh` and `runTests.sh`.
 
-I'm assuming you already have some familiarity with postgreSQL. To run this project, you'll need to create a new database called `jobsdb` and a user `vivacity_user` with password `secret`. If you are not comfortable using these settings, you can create your own user, and change the appropriate entries in the `.env` file. Normally, `.env` would uploaded to github, but I need to give you access.
+I'm assuming you already have some familiarity with postgreSQL. To run this project, you'll need to create a new database called `jobsdb` and a user `vivacity_user` with password `secret`. If you are not comfortable using these settings, you can create your own user, and change the appropriate entries in the `.env` file. Normally, `.env` would not be uploaded to github, but I need to give you access.
 
 Here are steps to use (I assume an existing user called 'postgres'):
 
