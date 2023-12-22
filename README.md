@@ -12,11 +12,11 @@ I'm assuming you already have some familiarity with postgreSQL. To run this proj
 
 Here are steps to use (I assume an existing user called 'postgres'):
 
-createdb -U postgres jobsdb
+        createdb -U postgres jobsdb
 
-psql -U postgres jobsdb
+        psql -U postgres jobsdb
 
-CREATE USER vivacity_user WITH SUPERUSER PASSWORD 'secret';
+        CREATE USER vivacity_user WITH SUPERUSER PASSWORD 'secret';
 
 Then use ctrl-d to exit.
 
@@ -55,9 +55,9 @@ My video was limited to two minutes, so I couldn't give a full tour. I'll list a
 - PUT `/awesome/skills/id`: payload is {skill_name, description} - all entries are optional: makes changes to skill with id of `id` and redirects to `/awesome/skills/id`
 - GET `/awesome/connections`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company_name, skill (from connections).
 - GET `/awesome/connections/:id`: performs a left join between jobs and connections, finds the single entry of id is `id` and returns connection id, role, company_name, skill (from connections).
-- GET `/awesome/connections/skills`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company_name, skill (from connections) _sorted by skill_.
+- GET `/awesome/connections/skills`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company*name, skill (from connections) \_sorted by skill*.
 - GET `/awesome/connections/skills/:id`: for skill with id of `id`, gets a table of jobs where that skill was used, sorted by start date. Entries are company_name, role, and description
-- GET `/awesome/connections/jobs`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company_name, skill (from connections) _sorted by job_.
+- GET `/awesome/connections/jobs`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company*name, skill (from connections) \_sorted by job*.
 - GET `/awesome/connections/jobs/:id`: for job with id of `id`, gets a table of skills used on that job, sorted by skill name. Entries are skill_name, and description
 - POST `/awesome/connections`: payload is {job, skill}, where job corresponds to company name. Creates a new entry in the connections table linking the given job entry and the given skill name. Redirects to `/awesome/connections`.
 - DELETE `/awesome/connections/:id`: deletes the entry from the connections table where the id is `id`.
