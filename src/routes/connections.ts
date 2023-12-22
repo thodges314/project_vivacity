@@ -86,7 +86,7 @@ router.get(
 );
 
 router.post('/', (request: Request, response: Response, next: NextFunction) => {
-  const { job, skill } = request.body;
+  const { job, skill }: { job: String; skill: String } = request.body;
   pool.query(
     'INSERT INTO connections (job, skill) VALUES ($1, $2) RETURNING *',
     [job, skill],

@@ -30,8 +30,19 @@ router.get(
 );
 
 router.post('/', (request: Request, response: Response, next: NextFunction) => {
-  const { company_name, role, description, start_date, end_date } =
-    request.body;
+  const {
+    company_name,
+    role,
+    description,
+    start_date,
+    end_date,
+  }: {
+    company_name: String;
+    role: String;
+    description: String;
+    start_date: Date;
+    end_date?: Date;
+  } = request.body;
   pool.query(
     'INSERT INTO jobs (company_name, role, description, start_date, end_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
     [company_name, role, description, start_date, end_date],
@@ -45,7 +56,8 @@ router.post('/', (request: Request, response: Response, next: NextFunction) => {
 router.post(
   '/:id/newSkill',
   (request: Request, response: Response, next: NextFunction) => {
-    const { skill, description } = request.body;
+    const { skill, description }: { skill: String; description: String } =
+      request.body;
     const { id } = request.params;
 
     pool.query(

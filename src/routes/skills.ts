@@ -30,7 +30,10 @@ router.get(
 );
 
 router.post('/', (request: Request, response: Response, next: NextFunction) => {
-  const { skill_name, description } = request.body;
+  const {
+    skill_name,
+    description,
+  }: { skill_name: String; description: String } = request.body;
   pool.query(
     'INSERT INTO skills (skill_name, description) VALUES ($1, $2) RETURNING *',
     [skill_name, description],
