@@ -12,11 +12,14 @@ I'm assuming you already have some familiarity with postgreSQL. To run this proj
 
 Here are steps to use (I assume an existing user called 'postgres'):
 
-    createdb -U postgres jobsdb
-    psql -U postgres jobsdb
-    CREATE USER vivacity_user WITH SUPERUSER PASSWORD 'secret';
+createdb -U postgres jobsdb
+
+psql -U postgres jobsdb
+
+CREATE USER vivacity_user WITH SUPERUSER PASSWORD 'secret';
 
 Then use ctrl-d to exit.
+
 If you have made it this far, you can run `npm run configure` from the project root. Then run `npm run dev`.
 
 ## Structure
@@ -34,3 +37,27 @@ Testing is performed with `npm run testAll`. Because each test mutates the datab
 ## Challenges
 
 Although I've worked on projects that use both SQL and GraphQL databases, I've never built one from the ground up, so I had to learn a bit about that first. Also, most jest tests I've written have been on front-end react components, so I had to learn how to test Express endpoints. Also, entering the data took quite some time.
+
+## Additional Endpoints
+
+My video was limited to two minutes, so I couldn't give a full tour. I'll list all endpoints here:
+
+- GET `/awesome/applicant` : html landing page
+- GET `/awesome/jobs` : JSON array of job id, company name, start date, end date and duration
+- GET `/awesome/jobs/:id`: JSON for single job, identified by job id, with company name, role, description, start date, end date, duration
+- POST `/awesome/jobs`: payload is {company_name, role_description, start_date, end_date}- end_date is optional: makes new entry for job in jobs table, redirects to `/awesome/jobs`
+- POST `/awesome/jobs/:id/newSkill`: payload is {skill, description} : adds entry to skills table, links to job with `id` identifier, redirects to `/awesome/connections/job/:id`
+- PUT `/awesome/jobs/:id`: payload is {company_name, role_description, start_date, end_date} - all entries are optional : makes changes to job with id of `id` and redirects to `/awesome/jobs/:id`
+- DELETE `/awesome/jobs/id`: deletes job from table and redirects to `/awesome/jobs`
+- GET `/awesome/skills`: get JSON array of all skills, with id, skill_name, description and experience - experience is calculated from start date and end date
+- GET `/awesome/skills/:id`: get array of single JSON entry for skill with `id`, includes skill_name, description and experience - experience is calculated from start date and end date
+- POST `/awesome/skills`: payload is {skill_name, description} : makes new entry for skill in skills table and redirects to `/awesome/skills/id` for the new skill.
+- PUT `/awesome/skills/id`: payload is {skill_name, description} - all entries are optional: makes changes to skill with id of `id` and redirects to `/awesome/skills/id`
+- GET `/awesome/connections`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company_name, skill (from connections).
+- GET `/awesome/connections/:id`: performs a left join between jobs and connections, finds the single entry of id is `id` and returns connection id, role, company_name, skill (from connections).
+- GET `/awesome/connections/skills`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company_name, skill (from connections) _sorted by skill_.
+- GET `/awesome/connections/skills/:id`: for skill with id of `id`, gets a table of jobs where that skill was used, sorted by start date. Entries are company_name, role, and description
+- GET `/awesome/connections/jobs`: performs a left join between jobs and connections and returns a JSON array with entries of connection id, role, company_name, skill (from connections) _sorted by job_.
+- GET `/awesome/connections/jobs/:id`: for job with id of `id`, gets a table of skills used on that job, sorted by skill name. Entries are skill_name, and description
+- POST `/awesome/connections`: payload is {job, skill}, where job corresponds to company name. Creates a new entry in the connections table linking the given job entry and the given skill name. Redirects to `/awesome/connections`.
+- DELETE `/awesome/connections/:id`: deletes the entry from the connections table where the id is `id`.
