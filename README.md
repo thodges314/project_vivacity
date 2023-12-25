@@ -24,6 +24,8 @@ If you have made it this far, you can run `npm run configure` from the project r
 
 ## Structure
 
+![ERD](./ERD.png')
+
 I created an `http://localhost:3000/awesome/applicant` endpoint, as requested. I had the return a basic landing page written in HTML, CSS and Bootstrap. Had I been creating a React project, I would have made something a bit more sophisticated, but I am mainly focused on the PostgreSQL components.
 
 For all of the other endpoints, you can navigate to `GET` requests in your browser, or play with `POST`, `PUT` and `DELETE` requests in postman. They are made with basic HTTP requests with JSON payloads. The video pretty much gives you a rundown of everything, but I encourage you to play on your own. Look through `src/routes` to see what's available to you. Note that each file corresponds to the endpoint: `applicant.ts` is `/awesome/applicant`, `connections.ts` is `/awesome/connections`, etc.
