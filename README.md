@@ -24,7 +24,7 @@ If you have made it this far, you can run `npm run configure` from the project r
 
 ## Structure
 
-![ERD]('ERD.png')
+![ERD](https://github.com/thodges314/project_vivacity/blob/master/ERD.png?raw=true)
 
 I created an `http://localhost:3000/awesome/applicant` endpoint, as requested. I had the return a basic landing page written in HTML, CSS and Bootstrap. Had I been creating a React project, I would have made something a bit more sophisticated, but I am mainly focused on the PostgreSQL components.
 
